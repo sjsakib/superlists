@@ -2,3 +2,6 @@ db.sqlite3
 geckodriver.log
 .pyc
 *.pyc
+*.sublime-workspace
+*.sublime-workspace
+*.sublime-project
