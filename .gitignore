@@ -5,3 +5,4 @@ geckodriver.log
 *.sublime-workspace
 *.sublime-workspace
 *.sublime-project
+.env
