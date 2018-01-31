@@ -28,15 +28,15 @@ eg, on Ubuntu:
 
 Assuming we have a folder account at /home/USERNAME
 
-/home/USERNAME
-└── sites
-    ├── DOMAIN1
-    │    ├── .env
-    │    ├── db.sqlite3
-    │    ├── manage.py etc
-    │    ├── static
-    │    └── virtualenv
-    └── DOMAIN2
-         ├── .env
-         ├── db.sqlite3
-         ├── etc
+    /home/USERNAME
+    └── sites
+        ├── DOMAIN1
+        │    ├── .env
+        │    ├── db.sqlite3
+        │    ├── manage.py etc
+        │    ├── static
+        │    └── virtualenv
+        └── DOMAIN2
+             ├── .env
+             ├── db.sqlite3
+             ├── etc
