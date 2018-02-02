@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.utils.html import escape
 from lists.models import Item, List
+from lists.forms import ItemForm
 
 
 class HomePageTest(TestCase):
@@ -20,6 +21,10 @@ class HomePageTest(TestCase):
         response = self.client.post('/lists/new', data={'item_text': 'A new list item'})
         new_list = List.objects.first()
         self.assertRedirects(response, f'/lists/{new_list.id}/')
+
+    def test_home_page_uses_item_form(self):
+        response = self.client.get('/')
+        self.assertIsInstance(response.context['form'], ItemForm)
 
 
 class ListViewTest(TestCase):
