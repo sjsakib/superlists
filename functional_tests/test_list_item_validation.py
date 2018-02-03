@@ -80,3 +80,20 @@ class ItemValidationTest(FunctionalTest):
         self.wait_for(lambda: self.assertFalse(
             self.get_error_element().is_displayed()
         ))
+
+        # She then clears the last typed character to see error again
+        self.get_item_input_box().send_keys(Keys.BACKSPACE)
+        self.get_item_input_box().send_keys(Keys.ENTER)
+
+        # Invalid again
+        self.wait_for(lambda: self.assertTrue(
+            self.get_error_element().is_displayed()
+        ))
+
+        # She clicks the input box
+        self.get_item_input_box().click()
+
+        # Clicking also clears the error message
+        self.wait_for(lambda: self.assertFalse(
+            self.get_error_element().is_displayed()
+        ))
