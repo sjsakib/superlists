@@ -1,8 +1,10 @@
 import random
+import os
 from fabric.contrib.files import append, exists
 from fabric.api import cd, env, local, run
 
 REPO_URL = "https://github.com/sjsakib/superlists.git"
+env.use_ssh_config = True
 
 
 def deploy():
@@ -40,6 +42,8 @@ def _create_or_update_dotenv():
             'abcdefghilmnopqrstuvwxyz1234567890', k=50
         ))
         append('.env', f'DJANGO_SECRET_KEY={new_secret}')
+    email_password = os.environ['EMAIL_PASSWORD']
+    append('.env', f'EMAIL_PASSWORD={email_password}')
 
 
 def _update_static_files():

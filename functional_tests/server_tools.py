@@ -1,9 +1,8 @@
-import os
 from fabric.api import run, env
 from fabric.context_managers import settings, shell_env
 
 
-env.key_filename = os.environ.get('KEY_FILE')
+env.use_ssh_config = True
 
 
 def _get_manage_dot_py(host):
