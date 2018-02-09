@@ -30,6 +30,10 @@ class ItemModelTest(TestCase):
             list(Item.objects.all()),
             [item1, item2, item3]
         )
+        self.assertEqual(
+            list(list1.item_set.all()),
+            [item1, item2, item3]
+        )
 
     def test_cannot_save_empty_list_item(self):
         list_ = List.objects.create()
