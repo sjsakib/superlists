@@ -33,7 +33,7 @@ def new_list(request):
         list_.owner = request.user
         list_.save()
         form.save(for_list=list_)
-        return redirect(list_)
+        return redirect(str(list_.get_absolute_url()))  # to be able to mock
     else:
         return render(request, 'home.html', {'form': form})
 
