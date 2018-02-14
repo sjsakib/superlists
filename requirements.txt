@@ -2,3 +2,4 @@ Django==2.0.1
 gunicorn==19.7.1
 
 Fabric3==1.13.1.post1
+selenium==3.7.0
