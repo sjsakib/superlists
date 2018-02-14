@@ -13,3 +13,4 @@ install:
 
 script:
   - xvfb-run python manage.py test
+  - phantomjs lists/static/tests/runner.js lists/static/tests/tests.html
