@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from lists.models import Item, List
-from lists.forms import ItemForm, ExistingListItemForm
+from lists.forms import ItemForm, ExistingListItemForm, NewListForm
 User = get_user_model()
 
 
@@ -25,17 +25,13 @@ def view_list(request, list_id):
     })
 
 
-def new_list(request):
-    form = ItemForm(request.POST)
 
+def new_list(request):
+    form = NewListForm(data=request.POST)
     if form.is_valid():
-        list_ = List()
-        list_.owner = request.user
-        list_.save()
-        form.save(for_list=list_)
-        return redirect(str(list_.get_absolute_url()))  # to be able to mock
-    else:
-        return render(request, 'home.html', {'form': form})
+        list_ = form.save(owner=request.user)
+        return redirect(list_)
+    return render(request, 'home.html', {'form': form})
 
 
 def my_lists(request, email):
