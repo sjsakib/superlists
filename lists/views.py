@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from lists.models import Item, List
@@ -25,13 +26,17 @@ def view_list(request, list_id):
     })
 
 
-
 def new_list(request):
     form = NewListForm(data=request.POST)
     if form.is_valid():
         list_ = form.save(owner=request.user)
         return redirect(list_)
     return render(request, 'home.html', {'form': form})
+
+
+def share_list(request, list_id):
+    list_ = List.objects.get(id=list_id)
+    return redirect(list_)
 
 
 def my_lists(request, email):
