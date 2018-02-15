@@ -23,6 +23,9 @@ class ListPage(object):
     def get_list_owner(self):
         return self.test.browser.find_element_by_id('id_list_owner').text
 
+    def get_table_rows(self):
+        return self.test.browser.find_elements_by_css_selector('#id_list_table tr')
+
     def share_list_with(self, email):
         self.get_share_box().send_keys(email)
         self.get_share_box().send_keys(Keys.ENTER)
@@ -36,11 +39,11 @@ class ListPage(object):
         self.get_item_input_box().send_keys(item_text)
         self.get_item_input_box().send_keys(Keys.ENTER)
         item_number = num_rows + 1
-        self.wait_for_row_in_list_table(f'{item_number}: {item_text}')
+        self.wait_for_row_in_list_table(item_text, item_number)
         return self
 
     @wait
-    def wait_for_row_in_list_table(self, row_text):
-        table = self.test.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.test.assertIn(row_text, [row.text for row in rows])
+    def wait_for_row_in_list_table(self, item_text, item_number):
+        expected_text = f'{item_number}: {item_text}'
+        rows = self.get_table_rows()
+        self.test.assertIn(expected_text, [row.text for row in rows])
