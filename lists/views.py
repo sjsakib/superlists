@@ -36,6 +36,11 @@ def new_list(request):
 
 def share_list(request, list_id):
     list_ = List.objects.get(id=list_id)
+    try:
+        user = User.objects.get(email=request.POST['sharee'])
+        list_.shared_with.add(user)
+    except User.DoesNotExist as e:
+        pass
     return redirect(list_)
 
 
